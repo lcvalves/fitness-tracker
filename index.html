@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <!-- Libraries -->
+  <!-- Libraries -->
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/d3-fetch@3"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -13,6 +13,7 @@
   <script src="//unpkg.com/alpinejs" defer></script>
   <!-- Local script files -->
   <script src="./assets/js/weight.js" defer></script>
+  <script src="./assets/js/waist.js" defer></script>
   <script>
     tailwind.config = {
       theme: {
@@ -145,34 +146,41 @@
       <div class="tab-pane fade show active" id="tabs-weightJustify" role="tabpanel"
         aria-labelledby="tabs-weight-tabJustify">
         <section style="padding: 40px;">
-          <h2 id="weight" class="font-medium leading-tight text-4xl mt-0 mb-2 text-blue-600"><i class="fa-solid fa-weight-scale pr-5 text-blue-900"></i>Weight</h2>
+          <h2 id="weight" class="font-medium leading-tight text-4xl mt-0 mb-2 text-blue-600"><i
+              class="fa-solid fa-weight-scale pr-5 text-blue-900"></i>Weight</h2>
           <div id="weight-chart"></div>
         </section>
       </div>
       <div class="tab-pane fade" id="tabs-waistJustify" role="tabpanel" aria-labelledby="tabs-waist-tabJustify">
         <section style="padding: 40px;">
-          <h2 id="waist" class="font-medium leading-tight text-4xl mt-0 mb-2 text-blue-600"><i class="fa-solid fa-tape pr-5 text-blue-900"></i>Waist</h2>
+          <h2 id="waist" class="font-medium leading-tight text-4xl mt-0 mb-2 text-blue-600"><i
+              class="fa-solid fa-tape pr-5 text-blue-900"></i>Waist</h2>
+          <div id="waist-chart"></div>
         </section>
       </div>
       <div class="tab-pane fade" id="tabs-fastingHoursJustify" role="tabpanel"
         aria-labelledby="tabs-fastingHours-tabJustify">
         <section style="padding: 40px;">
-          <h2 id="fasting-hours" class="font-medium leading-tight text-4xl mt-0 mb-2 text-blue-600"><i class="fa-solid fa-clock pr-5 text-blue-900"></i>Fasting Hours</h2>
+          <h2 id="fasting-hours" class="font-medium leading-tight text-4xl mt-0 mb-2 text-blue-600"><i
+              class="fa-solid fa-clock pr-5 text-blue-900"></i>Fasting Hours</h2>
         </section>
       </div>
       <div class="tab-pane fade" id="tabs-caloriesMacrosJustify" role="tabpanel"
         aria-labelledby="tabs-caloriesMacros-tabJustify">
         <section style="padding: 40px;">
-          <h2 id="calories-macros" class="font-medium leading-tight text-4xl mt-0 mb-2 text-blue-600"><i class="fa-solid fa-apple-whole pr-5 text-blue-900"></i>Calories & Macros</h2>
-            <div id="calories-macros-chart"></div>
+          <h2 id="calories-macros" class="font-medium leading-tight text-4xl mt-0 mb-2 text-blue-600"><i
+              class="fa-solid fa-apple-whole pr-5 text-blue-900"></i>Calories & Macros</h2>
+          <div id="calories-macros-chart"></div>
         </section>
       </div>
       <div class="tab-pane fade" id="tabs-weeklyWorkoutsJustify" role="tabpanel"
         aria-labelledby="tabs-weeklyWorkouts-tabJustify">
         <section style="padding: 40px;">
-          <h2 id="weekly-workouts" class="font-medium leading-tight text-4xl mt-0 mb-2 text-blue-600"><i class="fa-solid fa-dumbbell pr-5 color text-blue-900"></i>Weekly Workouts</h2>
-            <div class="shadow-lg rounded-lg overflow-hidden">
-              <canvas class="p-10" id="weekly-workouts-chart"></canvas></div>
+          <h2 id="weekly-workouts" class="font-medium leading-tight text-4xl mt-0 mb-2 text-blue-600"><i
+              class="fa-solid fa-dumbbell pr-5 color text-blue-900"></i>Weekly Workouts</h2>
+          <div class="shadow-lg rounded-lg overflow-hidden">
+            <canvas class="p-10" id="weekly-workouts-chart"></canvas>
+          </div>
         </section>
       </div>
     </div>
@@ -189,8 +197,15 @@
     </div>
   </footer>
 
-   <!-- External scripts Imports -->
+  <!-- External scripts Imports -->
   <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
+
+  <script>
+    // Chart dimensions
+    const margin = { top: 30, right: 30, bottom: 30, left: 60 },
+      width = 1500 - margin.left - margin.right,
+      height = 600 - margin.top - margin.bottom;
+  </script>
 </body>
 
 </html>

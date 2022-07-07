@@ -1,6 +1,6 @@
-// Append the weight_svg object to the body of the div
-const weight_svg = d3
-  .select("#weight-chart")
+// Append the waist_svg object to the body of the div
+const waist_svg = d3
+  .select("#waist-chart")
   .append("svg")
   .attr("width", width + margin.left + margin.right)
   .attr("height", height + margin.top + margin.bottom)
@@ -9,10 +9,10 @@ const weight_svg = d3
 
 // Read the data
 d3.csv(
-  "./data/weight.csv",
+  "./data/waist.csv",
   // Format CSV header variables
   function (d) {
-    return { date: d3.timeParse("%Y-%m-%d")(d.date), weight: d.weight };
+    return { date: d3.timeParse("%Y-%m-%d")(d.date), waist: d.waist };
   }
 ).then(
   // Use dataset
@@ -26,17 +26,17 @@ d3.csv(
         })
       )
       .range([0, width]);
-    weight_svg
+    waist_svg
       .append("g")
       .attr("transform", "translate(0," + height + ")")
       .call(d3.axisBottom(x));
 
     // Y axis
-    const y = d3.scaleLinear().domain([65, 80]).range([height, 0]);
-    weight_svg.append("g").call(d3.axisLeft(y));
+    const y = d3.scaleLinear().domain([75, 95]).range([height, 0]);
+    waist_svg.append("g").call(d3.axisLeft(y));
 
     // Add the line
-    weight_svg
+    waist_svg
       .append("path")
       .datum(data)
       .attr("fill", "none")
@@ -47,16 +47,16 @@ d3.csv(
         d3
           .line()
           .x((d) => x(d.date))
-          .y((d) => y(d.weight))
+          .y((d) => y(d.waist))
       );
     // Add the points
-    weight_svg
+    waist_svg
       .append("g")
       .selectAll("dot")
       .data(data)
       .join("circle")
       .attr("cx", (d) => x(d.date))
-      .attr("cy", (d) => y(d.weight))
+      .attr("cy", (d) => y(d.waist))
       .attr("r", 2.5)
       .attr("fill", "#69b3a2");
   }
