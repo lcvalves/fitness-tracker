@@ -5,13 +5,14 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css" />
+   <!-- Libraries -->
   <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/d3-fetch@3"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="//unpkg.com/alpinejs" defer></script>
+  <!-- Local script files -->
+  <script src="./assets/js/weight.js" defer></script>
   <script>
     tailwind.config = {
       theme: {
@@ -23,6 +24,10 @@
       }
     }
   </script>
+  <!-- Styling -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css" />
   <title>Fitness Tracker</title>
 </head>
 
@@ -49,32 +54,44 @@
       <!-- Tabs Div -->
       <div class="collapse navbar-collapse flex-grow items-center" id="navbarSupportedContent">
         <a class="text-xl text-white pr-2 font-semibold" href="#">Fitness Tracker
-          <i class="fa-solid fa-dumbbell" style="padding-left: 5px;"></i>
+          <i class="fa-solid fa-heart-pulse" style="padding-left: 5px;"></i>
         </a>
+
         <!-- Tabs -->
-        <ul class="nav nav-tabs flex flex-col md:flex-row flex-wrap list-none items-center" id="tabs-tabJustify" role="tablist">
+        <ul class="nav nav-tabs flex flex-col md:flex-row flex-wrap list-none items-center" id="tabs-tabJustify"
+          role="tablist">
           <li class="nav-item flex-grow text-center" role="presentation">
-            <a href="#tabs-weightJustify" class="nav-link w-full block font-medium text-xs leading-tight uppercase border-x-0 border-t-0 border-b-2 border-transparent px-6 py-3 my-2 hover:border-transparent hover:bg-gray-800 focus:border-transparent active" id="tabs-weight-tabJustify" data-bs-toggle="pill" data-bs-target="#tabs-weightJustify" role="tab"
-            aria-controls="tabs-weightJustify" aria-selected="true">Weight</a>
+            <a href="#tabs-weightJustify"
+              class="nav-link w-full block font-medium text-xs leading-tight uppercase border-x-0 border-t-0 border-b-2 border-transparent px-6 py-3 my-2 hover:border-transparent hover:bg-gray-800 focus:border-transparent active"
+              id="tabs-weight-tabJustify" data-bs-toggle="pill" data-bs-target="#tabs-weightJustify" role="tab"
+              aria-controls="tabs-weightJustify" aria-selected="true">Weight</a>
           </li>
           <li class="nav-item flex-grow text-center" role="presentation">
-            <a href="#tabs-waistJustify" class="nav-link w-full block font-medium text-xs leading-tight uppercase border-x-0 border-t-0 border-b-2 border-transparent px-6 py-3 my-2 hover:border-transparent hover:bg-gray-800 focus:border-transparent" id="tabs-waist-tabJustify" data-bs-toggle="pill" data-bs-target="#tabs-waistJustify" role="tab"
+            <a href="#tabs-waistJustify"
+              class="nav-link w-full block font-medium text-xs leading-tight uppercase border-x-0 border-t-0 border-b-2 border-transparent px-6 py-3 my-2 hover:border-transparent hover:bg-gray-800 focus:border-transparent"
+              id="tabs-waist-tabJustify" data-bs-toggle="pill" data-bs-target="#tabs-waistJustify" role="tab"
               aria-controls="tabs-waistJustify" aria-selected="false">Waist</a>
           </li>
           <li class="nav-item flex-grow text-center" role="presentation">
-            <a href="#tabs-fastingHoursJustify" class="nav-link w-full block font-medium text-xs leading-tight uppercase border-x-0 border-t-0 border-b-2 border-transparent px-6 py-3 my-2 hover:border-transparent hover:bg-gray-800 focus:border-transparent" id="tabs-fastingHours-tabJustify" data-bs-toggle="pill" data-bs-target="#tabs-fastingHoursJustify" role="tab"
-              aria-controls="tabs-fastingHoursJustify" aria-selected="false">Fasting Hours</a>
+            <a href="#tabs-fastingHoursJustify"
+              class="nav-link w-full block font-medium text-xs leading-tight uppercase border-x-0 border-t-0 border-b-2 border-transparent px-6 py-3 my-2 hover:border-transparent hover:bg-gray-800 focus:border-transparent"
+              id="tabs-fastingHours-tabJustify" data-bs-toggle="pill" data-bs-target="#tabs-fastingHoursJustify"
+              role="tab" aria-controls="tabs-fastingHoursJustify" aria-selected="false">Fasting Hours</a>
           </li>
           <li class="nav-item flex-grow text-center" role="presentation">
-            <a href="#tabs-caloriesMacrosJustify" class="nav-link w-full block font-medium text-xs leading-tight uppercase border-x-0 border-t-0 border-b-2 border-transparent px-6 py-3 my-2 hover:border-transparent hover:bg-gray-800 focus:border-transparent" id="tabs-caloriesMacros-tabJustify" data-bs-toggle="pill" data-bs-target="#tabs-caloriesMacrosJustify" role="tab"
-              aria-controls="tabs-caloriesMacrosJustify" aria-selected="false">Calories & Macros</a>
+            <a href="#tabs-caloriesMacrosJustify"
+              class="nav-link w-full block font-medium text-xs leading-tight uppercase border-x-0 border-t-0 border-b-2 border-transparent px-6 py-3 my-2 hover:border-transparent hover:bg-gray-800 focus:border-transparent"
+              id="tabs-caloriesMacros-tabJustify" data-bs-toggle="pill" data-bs-target="#tabs-caloriesMacrosJustify"
+              role="tab" aria-controls="tabs-caloriesMacrosJustify" aria-selected="false">Calories & Macros</a>
           </li>
           <li class="nav-item flex-grow text-center" role="presentation">
-            <a href="#tabs-weeklyWorkoutsJustify" class="nav-link w-full block font-medium text-xs leading-tight uppercase border-x-0 border-t-0 border-b-2 border-transparent px-6 py-3 my-2 hover:border-transparent hover:bg-gray-800 focus:border-transparent" id="tabs-weeklyWorkouts-tabJustify" data-bs-toggle="pill" data-bs-target="#tabs-weeklyWorkoutsJustify" role="tab"
-              aria-controls="tabs-weeklyWorkoutsJustify" aria-selected="false">Weekly Workouts</a>
+            <a href="#tabs-weeklyWorkoutsJustify"
+              class="nav-link w-full block font-medium text-xs leading-tight uppercase border-x-0 border-t-0 border-b-2 border-transparent px-6 py-3 my-2 hover:border-transparent hover:bg-gray-800 focus:border-transparent"
+              id="tabs-weeklyWorkouts-tabJustify" data-bs-toggle="pill" data-bs-target="#tabs-weeklyWorkoutsJustify"
+              role="tab" aria-controls="tabs-weeklyWorkoutsJustify" aria-selected="false">Weekly Workouts</a>
           </li>
         </ul>
-        <!-- Left links -->
+
       </div>
 
       <!-- Add Data -->
@@ -87,6 +104,8 @@
               <i class="fas fa-plus"></i>
             </svg>
           </a>
+
+          <!-- Dropdown Items -->
           <ul
             class="dropdown-menu min-w-max absolute hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded-lg shadow-lg mt-1 hidden m-0 bg-clip-padding border-none left-auto right-0"
             aria-labelledby="dropdownMenuButton">
@@ -111,58 +130,67 @@
                 href="#">Weekly Workouts</a>
             </li>
           </ul>
+
         </div>
       </div>
-      <!-- Right elements -->
+
     </div>
   </nav>
 
-
-<main class="min-h-screen">
   <!-- Content -->
-  <div class="tab-content" id="tabs-tabContentJustify">
-    <div class="tab-pane fade show active" id="tabs-weightJustify" role="tabpanel"aria-labelledby="tabs-weight-tabJustify">
-      <section style="padding: 40px;">
-        <h2 id="weight" class="font-medium leading-tight text-4xl mt-0 mb-2 text-blue-600">Weight</h2>
-      </section>
-    </div>
-    <div class="tab-pane fade" id="tabs-waistJustify" role="tabpanel" aria-labelledby="tabs-waist-tabJustify">
-      <section style="padding: 40px;">
-        <h2 id="waist" class="font-medium leading-tight text-4xl mt-0 mb-2 text-blue-600">Waist</h2>
-      </section>
-    </div>
-    <div class="tab-pane fade" id="tabs-fastingHoursJustify" role="tabpanel" aria-labelledby="tabs-fastingHours-tabJustify">
-      <section style="padding: 40px;">
-        <h2 id="fasting-hours" class="font-medium leading-tight text-4xl mt-0 mb-2 text-blue-600">Fasting Hours</h2>
-      </section>
-    </div>
-    <div class="tab-pane fade" id="tabs-caloriesMacrosJustify" role="tabpanel" aria-labelledby="tabs-caloriesMacros-tabJustify">
-      <section style="padding: 40px;">
-        <h2 id="calories-macros" class="font-medium leading-tight text-4xl mt-0 mb-2 text-blue-600">Calories & Macros</h2>
-      </section>
-    </div>
-    <div class="tab-pane fade" id="tabs-weeklyWorkoutsJustify" role="tabpanel" aria-labelledby="tabs-weeklyWorkouts-tabJustify">
-      <section style="padding: 40px;">
-        <h2 id="weekly-workouts" class="font-medium leading-tight text-4xl mt-0 mb-2 text-blue-600">Weekly Workouts</h2>
-      </section>
-    </div>
-  </div>
-</main>
+  <main class="min-h-screen">´
 
-<!-- Footer -->
-<footer class="bg-gray-200 text-center lg:text-left sticky fixed bottom-0 ">
-  <div class="text-gray-700 text-center p-4" style="background-color: rgba(0, 0, 0, 0.2);">
-    MEINF 2021/22 | Informação Geográfica & Visualização | Luís Alves #18490
-    <a class="text-gray-800" href="https://github.com/lcvalves">
-      <i class="fab fa-github"></i>@lcvalves
-    </a>
-  </div>
-</footer>
+    <!-- Tab Content -->
+    <div class="tab-content" id="tabs-tabContentJustify">
+      <div class="tab-pane fade show active" id="tabs-weightJustify" role="tabpanel"
+        aria-labelledby="tabs-weight-tabJustify">
+        <section style="padding: 40px;">
+          <h2 id="weight" class="font-medium leading-tight text-4xl mt-0 mb-2 text-blue-600"><i class="fa-solid fa-weight-scale pr-5 text-blue-900"></i>Weight</h2>
+          <div id="weight-chart"></div>
+        </section>
+      </div>
+      <div class="tab-pane fade" id="tabs-waistJustify" role="tabpanel" aria-labelledby="tabs-waist-tabJustify">
+        <section style="padding: 40px;">
+          <h2 id="waist" class="font-medium leading-tight text-4xl mt-0 mb-2 text-blue-600"><i class="fa-solid fa-tape pr-5 text-blue-900"></i>Waist</h2>
+        </section>
+      </div>
+      <div class="tab-pane fade" id="tabs-fastingHoursJustify" role="tabpanel"
+        aria-labelledby="tabs-fastingHours-tabJustify">
+        <section style="padding: 40px;">
+          <h2 id="fasting-hours" class="font-medium leading-tight text-4xl mt-0 mb-2 text-blue-600"><i class="fa-solid fa-clock pr-5 text-blue-900"></i>Fasting Hours</h2>
+        </section>
+      </div>
+      <div class="tab-pane fade" id="tabs-caloriesMacrosJustify" role="tabpanel"
+        aria-labelledby="tabs-caloriesMacros-tabJustify">
+        <section style="padding: 40px;">
+          <h2 id="calories-macros" class="font-medium leading-tight text-4xl mt-0 mb-2 text-blue-600"><i class="fa-solid fa-apple-whole pr-5 text-blue-900"></i>Calories & Macros</h2>
+            <div id="calories-macros-chart"></div>
+        </section>
+      </div>
+      <div class="tab-pane fade" id="tabs-weeklyWorkoutsJustify" role="tabpanel"
+        aria-labelledby="tabs-weeklyWorkouts-tabJustify">
+        <section style="padding: 40px;">
+          <h2 id="weekly-workouts" class="font-medium leading-tight text-4xl mt-0 mb-2 text-blue-600"><i class="fa-solid fa-dumbbell pr-5 color text-blue-900"></i>Weekly Workouts</h2>
+            <div class="shadow-lg rounded-lg overflow-hidden">
+              <canvas class="p-10" id="weekly-workouts-chart"></canvas></div>
+        </section>
+      </div>
+    </div>
 
+  </main>
 
-<script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
+  <!-- Footer -->
+  <footer class="bg-gray-200 text-center lg:text-left sticky fixed bottom-0 ">
+    <div class="text-gray-700 text-center p-4" style="background-color: rgba(0, 0, 0, 0.2);">
+      MEINF 2021/22 | Informação Geográfica & Visualização | Luís Alves #18490
+      <a class="text-gray-800" href="https://github.com/lcvalves">
+        <i class="fab fa-github"></i>@lcvalves
+      </a>
+    </div>
+  </footer>
 
-
+   <!-- External scripts Imports -->
+  <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
 </body>
 
 </html>
