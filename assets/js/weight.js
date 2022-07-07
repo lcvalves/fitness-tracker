@@ -58,6 +58,6 @@ d3.csv(
       .attr("cx", (d) => x(d.date))
       .attr("cy", (d) => y(d.weight))
       .attr("r", 2.5)
-      .attr("fill", "#69b3a2");
+      .attr("fill", "#003660");
   }
 );

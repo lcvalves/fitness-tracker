@@ -1,0 +1,15 @@
+[
+  { "week": "2022-01", "workouts": 1 },
+  { "week": "2022-02", "workouts": 2 },
+  { "week": "2022-03", "workouts": 2 },
+  { "week": "2022-04", "workouts": 2 },
+  { "week": "2022-05", "workouts": 3 },
+  { "week": "2022-06", "workouts": 2 },
+  { "week": "2022-07", "workouts": 1 },
+  { "week": "2022-08", "workouts": 4 },
+  { "week": "2022-09", "workouts": 2 },
+  { "week": "2022-10", "workouts": 3 },
+  { "week": "2022-11", "workouts": 2 },
+  { "week": "2022-12", "workouts": 2 },
+  { "week": "2022-13", "workouts": 3 }
+]
